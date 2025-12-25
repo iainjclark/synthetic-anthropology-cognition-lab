@@ -1,0 +1,38 @@
+from pathlib import Path
+import json
+from openai import OpenAI
+from dotenv import load_dotenv
+import os
+
+from llm_prompts import GLOBAL_REFLECTION_PROMPT
+
+# Load environment variables (API key)
+load_dotenv()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+def global_llm_reflection(cv_text: str, scale: int = 20):
+    """
+    Ask the LLM for a holistic CV review.
+    Returns structured JSON with rating, strengths, weaknesses, and feedback.
+    """
+    prompt = f"""
+    {GLOBAL_REFLECTION_PROMPT}
+
+    CV:
+    {cv_text}
+    """
+
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.3
+    )
+
+    content = response.choices[0].message.content
+
+    # Try to parse JSON safely
+    try:
+        return json.loads(content)
+    except json.JSONDecodeError:
+        return {"raw_output": content}
+
