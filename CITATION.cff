@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this repository in your work, please cite it."
+title: "synthetic-anthropology-cognition-lab"
+type: software
+authors:
+  - family-names: "Clark"
+    given-names: "Iain John"
+    email: "iain@iainjclark.co.uk"
+    orcid: "https://orcid.org/0000-0002-8607-2317"
+url: "https://github.com/iainjclark/synthetic-anthropology-cognition-lab"
+license: MIT
+keywords:
+  - synthetic anthropology
+  - cliodynamics
+  - computational social science
+  - large language models
+  - human-AI interaction
+  - dialogue systems
